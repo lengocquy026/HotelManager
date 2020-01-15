@@ -124,11 +124,14 @@ namespace HMS.Controllers
         public async Task<IActionResult> Delete(int? id)
         {
             var accomodation = await _context.Accomodations.FindAsync(id);
-            _context.Accomodations.Remove(accomodation);
+            
             if (accomodation == null)
             {
                 return NotFound();
             }
+            
+            _context.Accomodations.Remove(accomodation);
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
